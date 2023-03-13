@@ -14,6 +14,11 @@ export default new Router({
       component: Home,
     },
     {
+      path: '/bench/iview-page',
+      name: 'iview-page',
+      component: () => import(/* webpackChunkName: "bench-static" */ './components/benchmarks/iview-page/IviewPage.vue'),
+    },
+    {
       path: '/bench/static',
       name: 'bench-static',
       component: () => import(/* webpackChunkName: "bench-static" */ './components/benchmarks/static/Static.vue'),

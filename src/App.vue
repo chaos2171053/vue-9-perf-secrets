@@ -2,6 +2,7 @@
   <div id="app">
     <div id="nav">
       <router-link to="/" exact>Home</router-link>
+      <router-link :to="{ name: 'iview-page' }">iview page</router-link>
       <!-- Omitted, not enough performance gains in this example -->
       <!-- Need to find/write a better benchmark for this -->
       <!-- <router-link :to="{ name: 'bench-static' }">Static</router-link> -->
