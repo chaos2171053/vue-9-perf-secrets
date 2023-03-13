@@ -23,7 +23,9 @@
         <Button @click="handleReset('queryUserForm')" style="margin-left: 8px"
           >Reset</Button
         >
-        <Button @click="showAddUserModel=true" style="margin-left: 8px">Add</Button>
+        <Button @click="showAddUserModel = true" style="margin-left: 8px"
+          >Add</Button
+        >
       </FormItem>
     </Form>
     <Table :columns="columns" :data="listData"></Table>
@@ -34,11 +36,7 @@
       @on-ok="onAddUserOk"
       @on-cancel="onAddUserCancel"
     >
-      <Form
-        ref="addUserForm"
-        :model="addUserForm"
-        :rules="addUserFormRules"
-      >
+      <Form ref="addUserForm" :model="addUserForm" :rules="addUserFormRules">
         <FormItem prop="name" label="name">
           <Input type="text" v-model="addUserForm.name" placeholder="name">
             <template #prepend>
@@ -61,6 +59,7 @@
 
 <script>
 import { mockListData } from "./utils";
+import { resolveComponent } from "vue";
 export default {
   data() {
     return {
@@ -70,13 +69,30 @@ export default {
       },
       columns: [
         {
+          title: "avatar",
+          key: "avatar",
+          render: (h, params) => {
+            return h("img", {
+              style: {
+                width: "200px",
+                height: "200px"
+              },
+              attrs: {
+                src: require('./cat.jpg')
+              },
+            });
+          }
+        },
+        {
           title: "Name",
-          key: "name"
+          key: "name",
+
         },
         {
           title: "Age",
           key: "age"
-        }
+        },
+
       ],
       listData: mockListData,
       showAddUserModel: false,
@@ -102,7 +118,6 @@ export default {
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
-
           const { name, age } = this.queryUserForm;
 
           this.listData = mockListData.filter(item => {
@@ -121,24 +136,24 @@ export default {
       this.$refs[name].resetFields();
     },
     onAddUserOk() {
-      this.$refs['addUserForm'].validate(valid => {
+      this.$refs["addUserForm"].validate(valid => {
         if (valid) {
           const { name, age } = this.addUserForm;
           this.listData.push({
-            id:new Date().getTime(),
+            id: new Date().getTime(),
             name,
-            age:Number(age)
-          })
-          this.showAddUserModel =false
+            age: Number(age)
+          });
+          this.showAddUserModel = false;
         } else {
-          this.$Message.error('Fail!');
+          this.$Message.error("Fail!");
         }
       });
     },
     onAddUserCancel() {
-      this.handleReset('addUserForm')
-      this.showAddUserModel =false
-    },
+      this.handleReset("addUserForm");
+      this.showAddUserModel = false;
+    }
   }
 };
 </script>

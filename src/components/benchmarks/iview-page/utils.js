@@ -19,7 +19,7 @@ function randomNumber(min, max) {
   return parseInt(Math.random() * (max - min) + min, 10);
 }
 
-const mockListData = new Array(3).fill(1).map((item, index) => {
+const mockListData = new Array(1000).fill(1).map((item, index) => {
   const user = listDataSource[randomNumber(0, 4)]
   return {
     ...user,
