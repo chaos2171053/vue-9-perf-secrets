@@ -16,6 +16,7 @@ fps({
   position: 'top-right',
   style: `
     font-size: 24px;
+    color:red;
   `,
 })
 
