@@ -69,5 +69,10 @@ export default new Router({
       name: 'bench-functional',
       component: () => import(/* webpackChunkName: "bench-functional" */ './components/benchmarks/functional/Functional.vue'),
     },
+    {
+      path: '/bench/iview-page-child',
+      name: 'iview-page-child',
+      component: () => import(/* webpackChunkName: "bench-functional" */ './components/benchmarks/iview-page/child/Child.vue'),
+    }
   ],
 })

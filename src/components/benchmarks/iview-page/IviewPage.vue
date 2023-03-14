@@ -59,7 +59,6 @@
 
 <script>
 import { mockListData } from "./utils";
-import { resolveComponent } from "vue";
 export default {
   data() {
     return {
@@ -78,23 +77,21 @@ export default {
                 height: "200px"
               },
               attrs: {
-                src: require('./cat.jpg')
-              },
+                src: require("./cat.jpg")
+              }
             });
           }
         },
         {
           title: "Name",
-          key: "name",
-
+          key: "name"
         },
         {
           title: "Age",
           key: "age"
-        },
-
+        }
       ],
-      listData: mockListData,
+      listData: [],
       showAddUserModel: false,
       addUserForm: {
         name: "",
@@ -114,19 +111,27 @@ export default {
       }
     };
   },
+  mounted() {
+    this.getList();
+  },
   methods: {
+    getList(name, age) {
+      setTimeout(() => {
+       this.listData = mockListData.filter(item => {
+              return (
+                (age && age === item.age) ||
+                (name && item.name.includes(name)) ||
+                (!age && !name)
+              );
+            });
+        this.$Message.success("Success!");
+      }, 1000);
+    },
     handleSubmit(name) {
       this.$refs[name].validate(valid => {
         if (valid) {
           const { name, age } = this.queryUserForm;
-
-          this.listData = mockListData.filter(item => {
-            return (
-              (age && age === item.age) ||
-              (name && item.name.includes(name)) ||
-              (!age && !name)
-            );
-          });
+          this.getList(name,age)
         } else {
           this.$Message.error("Fail!");
         }
@@ -139,12 +144,14 @@ export default {
       this.$refs["addUserForm"].validate(valid => {
         if (valid) {
           const { name, age } = this.addUserForm;
-          this.listData.push({
+          mockListData.push({
             id: new Date().getTime(),
             name,
             age: Number(age)
           });
+          this.getList()
           this.showAddUserModel = false;
+          this.handleReset('addUserForm')
         } else {
           this.$Message.error("Fail!");
         }
