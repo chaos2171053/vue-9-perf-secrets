@@ -10,7 +10,8 @@ export async function generate (count) {
       {},
       faker.helpers.createCard(),
       {
-        avatar: faker.image.avatar(),
+        // avatar: faker.image.avatar(),
+        avatar: require('./components/benchmarks/iview-page/cat.jpg'),
         // posts,
       },
     ))

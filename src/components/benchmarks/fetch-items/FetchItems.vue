@@ -102,7 +102,7 @@
         v-if="!loading && scrollVisible"
         class="items no-v"
       >
-        <template v-if="itemCount <= 1000">
+        <!-- <template v-if="itemCount <= 1000">
           <FetchItemViewFunctional
             v-for="item of items"
             :key="item.id"
@@ -112,7 +112,13 @@
         </template>
         <div v-else class="disabled-list">
           Disabled to prevent crash
-        </div>
+        </div> -->
+        <FetchItemViewFunctional
+            v-for="item of items"
+            :key="item.id"
+            :item="item"
+            @vote="voteItem(item)"
+          />
       </div>
     </template>
   </Benchmark>

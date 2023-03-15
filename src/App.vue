@@ -9,11 +9,11 @@
       <router-link :to="{ name: 'bench-functional' }">Functional components</router-link>
       <router-link :to="{ name: 'bench-child' }">Child splitting</router-link>
       <router-link :to="{ name: 'iview-page-child' }">Iview Child splitting</router-link>
-
+<!--
       <router-link :to="{ name: 'bench-local-var' }">Local var</router-link>
       <router-link :to="{ name: 'bench-hide' }">Reused Dom</router-link>
-      <router-link :to="{ name: 'bench-keep-alive' }">Keep alive</router-link>
-      <router-link :to="{ name: 'bench-deferred' }">Deferred features</router-link>
+      <router-link :to="{ name: 'bench-keep-alive' }">Keep alive</router-link> -->
+      <!-- <router-link :to="{ name: 'bench-deferred' }">Deferred features</router-link> -->
       <router-link :to="{ name: 'bench-fetch-items' }">Vuex demo</router-link>
     </div>
     <router-view class="route"/>
